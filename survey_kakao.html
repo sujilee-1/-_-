@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>배송 주소 입력 설문</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="text"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; cursor: pointer; }
+        #postcode, #address { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>배송 주소 입력</h1>
+
+    <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-group">
+        <label>주소</label>
+        <div style="display: flex; gap: 5px;">
+            <input type="text" id="postcode" placeholder="우편번호" readonly>
+            <button onclick="execDaumPostcode()">우편번호 찾기</button>
+        </div>
+        <input type="text" id="address" placeholder="주소" readonly>
+        <input type="text" id="detailAddress" placeholder="상세주소 입력">
+    </div>
+    
+    <div class="form-group">
+        <label for="phone">연락처</label>
+        <input type="text" id="phone" name="phone" required>
+    </div>
+
+    <button onclick="submitForm()">제출하기</button>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    var addr = '';
+                    if (data.userSelectedType === 'R') {
+                        addr = data.roadAddress;
+                    } else {
+                        addr = data.jibunAddress;
+                    }
+
+                    document.getElementById('postcode').value = data.zonecode;
+                    document.getElementById("address").value = addr;
+                    document.getElementById("detailAddress").focus();
+                }
+            }).open();
+        }
+
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const postcode = document.getElementById('postcode').value;
+            const address = document.getElementById('address').value;
+            const detailAddress = document.getElementById('detailAddress').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!name || !postcode || !address || !detailAddress || !phone) {
+                alert('모든 정보를 입력해 주세요.');
+                return;
+            }
+
+            const fullAddress = `${address}, ${detailAddress}`;
+
+            alert(`제출된 정보:\n이름: ${name}\n주소: ${fullAddress}\n연락처: ${phone}`);
+
+            // 여기에 데이터를 서버로 전송하는 로직을 추가합니다.
+        }
+    </script>
+</body>
+</html>
