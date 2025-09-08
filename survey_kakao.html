@@ -2,53 +2,59 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>배송 주소 입력 설문</title>
+    <title>(역삼) 경조사 지원 신청</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; }
         input[type="text"] { width: 100%; padding: 8px; box-sizing: border-box; }
-        button { padding: 10px 15px; cursor: pointer; }
-        #postcode, #address { margin-bottom: 5px; }
+        button {
+            padding: 8px 10px; /* 상하좌우 패딩 조정 */
+            cursor: pointer;
+            font-weight: bold; /* 볼드체 적용 */
+            line-height: 1.2; /* 줄 간격 조정 (두 줄 텍스트에 유용) */
+            text-align: center; /* 텍스트 가운데 정렬 */
+            min-width: 80px; /* 버튼의 최소 너비 설정 (텍스트가 두 줄일 때 버튼이 너무 작아지지 않도록) */
+}        #postcode, #address { margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
-    <h1>[역삼]경조사 접수</h1>
-    <p>안녕하세요. 총무팀입니다.</p>
+    <h1>[역삼] 경조사 지원 신청</h1>
+    <p>안녕하세요. 총무팀입니다.<br>빠른 경조사 지원을 위하여 아래 내용 응답 부탁드립니다.</p>
 
     <div class="form-group">
-        <label for="employee-id">사번 (mk~)</label>
+        <label for="employee-id">1. 사번을 입력해주세요. (mk~ 형식)</label>
         <input type="text" id="employee-id" name="employee-id" placeholder="mk6729" required>
     </div>
 
-    <div class="form-group">
-        <label>구분</label>
-        <br>
+<div class="form-group">
+    <label>구분</label>
+    <div>
         <input type="radio" id="kyungsa" name="division" value="경사" required>
         <label for="kyungsa">경사</label>
-        <br>
         <input type="radio" id="josa" name="division" value="조사" required>
         <label for="josa">조사</label>
     </div>
+</div>
 
     <div class="form-group">
-        <label for="name">이름</label>
+        <label for="name">2. 이름을 입력해주세요.</label>
         <input type="text" id="name" name="name" required>
     </div>
 
     <div class="form-group">
-        <label>주소</label>
+        <label>3. 주소를 입력해주세요.</label>
         <div style="display: flex; gap: 5px;">
             <input type="text" id="postcode" placeholder="우편번호" readonly required>
-            <button onclick="execDaumPostcode()">우편번호 찾기</button>
+            <button onclick="execDaumPostcode()">우편번호<br>찾기</button>
         </div>
         <input type="text" id="address" placeholder="주소" readonly required>
         <input type="text" id="detailAddress" placeholder="상세주소 입력" required>
     </div>
     
     <div class="form-group">
-        <label for="phone">연락처</label>
+        <label for="phone">4. 연락처를 입력해주세요.</label>
         <input type="text" id="phone" name="phone" required>
     </div>
 
@@ -96,3 +102,4 @@
     </script>
 </body>
 </html>
+
