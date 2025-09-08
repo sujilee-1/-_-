@@ -7,7 +7,7 @@
         body { font-family: Arial, sans-serif; padding: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input[type="text"], input[type="datetime-local"], textarea, select { width: 100%; padding: 8px; box-sizing: border-box; }
+        input[type="text"], input[type="date"], input[type="time"], textarea, select { width: 100%; padding: 8px; box-sizing: border-box; }
         .button-group { display: flex; gap: 10px; margin-top: 20px; }
         button {
             padding: 8px 10px; cursor: pointer; font-weight: bold;
@@ -45,56 +45,47 @@
 
     <div id="section2" class="section">
         <div class="form-group">
-            <label>1. 경사 유형을 선택해주세요.</label>
-            <div>
-                <input type="radio" id="marriage_self" name="kyungsa-type" value="본인 결혼" required>
-                <label for="marriage_self">본인 결혼</label>
-            </div>
-            <div>
-                <input type="radio" id="marriage_child" name="kyungsa-type" value="자녀 결혼" required>
-                <label for="marriage_child">자녀 결혼</label>
-            </div>
-            <div>
-                <input type="radio" id="birth_self" name="kyungsa-type" value="본인 출산" required>
-                <label for="birth_self">본인 출산</label>
-            </div>
-            <div>
-                <input type="radio" id="birth_spouse" name="kyungsa-type" value="배우자 출산" required>
-                <label for="birth_spouse">배우자 출산</label>
-            </div>
+            <label for="kyungsa-type">1. 경사 종류를 선택해주세요.</label>
+            <select id="kyungsa-type" name="kyungsa-type" required>
+                <option value="">--선택--</option>
+                <option value="본인 결혼">본인 결혼</option>
+                <option value="자녀 결혼">자녀 결혼</option>
+                <option value="본인 출산">본인 출산</option>
+                <option value="배우자 출산">배우자 출산</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="event-date">2. 발생일 (예식/출생 날짜 및 시간)</label>
-            <input type="datetime-local" id="event-date" name="event-date" required>
+            <label for="event-date">2. 발생일</label>
+            <input type="date" id="event-date" name="event-date" required>
         </div>
         <div class="form-group">
-            <label>3. 공지 여부</label>
+            <label for="event-time">3. 발생 시간</label>
+            <input type="time" id="event-time" name="event-time" required>
+        </div>
+        <div class="form-group">
+            <label>4. 공지 여부</label>
             <div>
                 <input type="radio" id="announce_yes" name="announce" value="O" required>
                 <label for="announce_yes">O</label>
-            </div>
-            <div>
                 <input type="radio" id="announce_no" name="announce" value="X" required>
                 <label for="announce_no">X</label>
             </div>
         </div>
         <div class="form-group">
-            <label>4. 화환 배송 여부 (출산 시 해당 없음)</label>
+            <label>5. 화환 배송 여부 (출산 시 해당 없음)</label>
             <div>
                 <input type="radio" id="wreath_yes" name="wreath" value="O" required>
                 <label for="wreath_yes">O</label>
-            </div>
-            <div>
                 <input type="radio" id="wreath_no" name="wreath" value="X" required>
                 <label for="wreath_no">X</label>
             </div>
         </div>
         <div class="form-group">
-            <label for="name">5. 이름을 입력해주세요.</label>
+            <label for="name">6. 이름을 입력해주세요.</label>
             <input type="text" id="name" name="name" required>
         </div>
         <div class="form-group">
-            <label>6. 배송 주소 (홀 이름까지 최대한 상세히 기재)</label>
+            <label>7. 배송 주소 (홀 이름까지 최대한 상세히 기재)</label>
             <div style="display: flex; gap: 5px;">
                 <input type="text" id="postcode" placeholder="우편번호" readonly required>
                 <button onclick="execDaumPostcodeKyungsa()">우편번호<br>찾기</button>
@@ -103,11 +94,11 @@
             <input type="text" id="detailAddress" placeholder="상세주소 입력" required>
         </div>
         <div class="form-group">
-            <label for="phone">7. 연락처를 입력해주세요. (010-0000-0000)</label>
+            <label for="phone">8. 연락처를 입력해주세요. (010-0000-0000)</label>
             <input type="text" id="phone" name="phone" required>
         </div>
         <div class="form-group">
-            <label for="notes">8. 기타 요청사항</label>
+            <label for="notes">9. 기타 요청사항</label>
             <textarea id="notes" name="notes" rows="4"></textarea>
         </div>
         <div class="button-group">
@@ -228,6 +219,9 @@
             }
 
             document.getElementById('section1').classList.remove('section-visible');
+            document.getElementById('section2').classList.remove('section-visible');
+            document.getElementById('section3').classList.remove('section-visible');
+
             if (division.value === '경사') {
                 document.getElementById('section2').classList.add('section-visible');
             } else if (division.value === '조사') {
@@ -271,8 +265,9 @@
             };
 
             if (division === '경사') {
-                data.kyungsaType = document.querySelector('input[name="kyungsa-type"]:checked').value;
+                data.kyungsaType = document.getElementById('kyungsa-type').value;
                 data.eventDate = document.getElementById('event-date').value;
+                data.eventTime = document.getElementById('event-time').value;
                 data.announce = document.querySelector('input[name="announce"]:checked').value;
                 data.wreath = document.querySelector('input[name="wreath"]:checked').value;
                 data.name = document.getElementById('name').value;
@@ -297,13 +292,12 @@
                 data.notes = document.getElementById('notes-josa').value;
             }
             
-            // 데이터 유효성 검사
             const requiredFields = (division === '경사')
-                ? [data.kyungsaType, data.eventDate, data.announce, data.wreath, data.name, data.postcode, data.address, data.detailAddress, data.phone]
+                ? [data.kyungsaType, data.eventDate, data.eventTime, data.announce, data.wreath, data.name, data.postcode, data.address, data.detailAddress, data.phone]
                 : [data.josaType, data.eventDate, data.funeralDate, data.deceasedName, data.announce, data.wreath, data.supplies, data.flag, data.postcode, data.address, data.detailAddress, data.phone];
             
             for (const field of requiredFields) {
-                if (field === '' || field === null) {
+                if (field === '' || field === null || typeof field === 'undefined') {
                     alert('모든 필수 정보를 입력해 주세요.');
                     return;
                 }
@@ -311,7 +305,7 @@
 
             console.log(data);
             alert('데이터가 성공적으로 수집되었습니다. 콘솔을 확인해 주세요.');
-            // window.location.reload(); // 제출 후 페이지 새로고침
+            // window.location.reload();
         }
     </script>
 </body>
