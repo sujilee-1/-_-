@@ -14,7 +14,23 @@
 </head>
 <body>
 
-    <h1>배송 주소 입력</h1>
+    <h1>[역삼]경조사 접수</h1>
+    <p>안녕하세요. 총무팀입니다.</p>
+
+    <div class="form-group">
+        <label for="employee-id">사번 (mk~)</label>
+        <input type="text" id="employee-id" name="employee-id" placeholder="mk6729" required>
+    </div>
+
+    <div class="form-group">
+        <label>구분</label>
+        <br>
+        <input type="radio" id="kyungsa" name="division" value="경사" required>
+        <label for="kyungsa">경사</label>
+        <br>
+        <input type="radio" id="josa" name="division" value="조사" required>
+        <label for="josa">조사</label>
+    </div>
 
     <div class="form-group">
         <label for="name">이름</label>
@@ -24,11 +40,11 @@
     <div class="form-group">
         <label>주소</label>
         <div style="display: flex; gap: 5px;">
-            <input type="text" id="postcode" placeholder="우편번호" readonly>
+            <input type="text" id="postcode" placeholder="우편번호" readonly required>
             <button onclick="execDaumPostcode()">우편번호 찾기</button>
         </div>
-        <input type="text" id="address" placeholder="주소" readonly>
-        <input type="text" id="detailAddress" placeholder="상세주소 입력">
+        <input type="text" id="address" placeholder="주소" readonly required>
+        <input type="text" id="detailAddress" placeholder="상세주소 입력" required>
     </div>
     
     <div class="form-group">
@@ -58,20 +74,22 @@
         }
 
         function submitForm() {
+            const employeeId = document.getElementById('employee-id').value;
+            const division = document.querySelector('input[name="division"]:checked');
             const name = document.getElementById('name').value;
             const postcode = document.getElementById('postcode').value;
             const address = document.getElementById('address').value;
             const detailAddress = document.getElementById('detailAddress').value;
             const phone = document.getElementById('phone').value;
 
-            if (!name || !postcode || !address || !detailAddress || !phone) {
-                alert('모든 정보를 입력해 주세요.');
+            if (!employeeId || !division || !name || !postcode || !address || !detailAddress || !phone) {
+                alert('모든 필수 정보를 입력해 주세요.');
                 return;
             }
 
             const fullAddress = `${address}, ${detailAddress}`;
 
-            alert(`제출된 정보:\n이름: ${name}\n주소: ${fullAddress}\n연락처: ${phone}`);
+            alert(`제출된 정보:\n사번: ${employeeId}\n구분: ${division.value}\n이름: ${name}\n주소: ${fullAddress}\n연락처: ${phone}`);
 
             // 여기에 데이터를 서버로 전송하는 로직을 추가합니다.
         }
