@@ -12,13 +12,7 @@
             display: flex;
             justify-content: center;
         }
-/* 날짜/시간 입력 필드의 폰트 크기 및 높이 조절 */
-input[type="date"], input[type="time"] {
-    font-size: 1.1em; /* 폰트 크기 증가 */
-    height: 40px;    /* 필드 높이 증가 */
-    padding: 8px 10px; /* 내부 여백 조절 */
-}
-        /* 전체 컨테이너 스타일 */
+
         .container {
             width: 100%;
             max-width: 600px;
@@ -32,34 +26,52 @@ input[type="date"], input[type="time"] {
             margin-bottom: 20px;
         }
 
+        .form-group-horizontal {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
         .form-group label {
             display: block;
             font-weight: bold;
             margin-bottom: 10px;
+            font-size: 1.1em; /* 라벨 폰트 크기 증가 */
+        }
+        
+        .form-group-horizontal > label {
+            margin-bottom: 0;
         }
 
-        /* 인풋 필드 기본 스타일 */
+        /* 모든 입력 필드의 크기를 일괄적으로 키우는 코드 */
         input[type="text"], input[type="date"], input[type="time"], textarea, select {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
+            font-size: 1.3em;
+            height: 48px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        
+        /* textarea는 높이 값을 따로 설정 */
+        textarea {
+            height: 100px;
+            font-size: 1.1em;
+        }
 
-        /* 라디오/체크박스 그룹 정렬 */
         .radio-group {
             display: flex;
             align-items: center;
             gap: 20px;
         }
-
+        
         .radio-group label {
-            font-weight: normal; /* 라디오 버튼 라벨 볼드체 해제 */
+            font-weight: normal;
             margin-bottom: 0;
+            font-size: 1.1em; /* 라디오 버튼 옆 텍스트 폰트 크기 증가 */
         }
 
-        /* 버튼 그룹 */
         .button-group {
             display: flex;
             gap: 10px;
@@ -68,7 +80,7 @@ input[type="date"], input[type="time"] {
         }
 
         button {
-            padding: 8px 10px;
+            padding: 12px 14px;
             cursor: pointer;
             font-weight: bold;
             line-height: 1.2;
@@ -76,9 +88,9 @@ input[type="date"], input[type="time"] {
             min-width: 80px;
             border: 1px solid #000;
             border-radius: 4px;
+            font-size: 1.1em;
         }
 
-        /* 섹션별 스타일 */
         .section {
             display: none;
         }
@@ -86,7 +98,6 @@ input[type="date"], input[type="time"] {
         .section-visible {
             display: block;
         }
-
     </style>
 </head>
 <body>
@@ -378,6 +389,7 @@ input[type="date"], input[type="time"] {
     </script>
 </body>
 </html>
+
 
 
 
