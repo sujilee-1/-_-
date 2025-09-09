@@ -4,7 +4,12 @@
     <meta charset="utf-8">
     <title>(역삼) 경조사 지원 신청</title>
     <style>
-        body { font-family: Noto Sans KR, sans-serif; display: flex; justify-content: center; background-color: #f0f0f0; }
+        body { 
+            font-family: Noto Sans KR, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            background-color: #5F0080; /* 원하는 배경 색상 코드 여기에 입력 */
+        }
 
         /* 전체 컨테이너 스타일 */
         .container {
@@ -19,7 +24,15 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 10px; }
         input[type="text"], input[type="date"], input[type="time"], textarea, select { width: 100%; padding: 8px; box-sizing: border-box; }
-        .button-group { display: flex; gap: 10px; margin-top: 20px; }
+        
+        /* '다음' 버튼 그룹 아래 여백 추가 */
+        .button-group { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 20px; 
+            margin-bottom: 30px; /* 여기를 추가 또는 수정하여 다음 질문과의 간격 조정 */
+        }
+
         button {
             padding: 8px 10px; cursor: pointer; font-weight: bold;
             line-height: 1.2; text-align: center; min-width: 80px;
@@ -29,7 +42,7 @@
         .section { display: none; }
         .section-visible { display: block; }
 
-        /* 날짜 입력 필드 레이아웃 조정 */
+        /* 날짜 입력 필드 레이아웃 조정 (현재 브라우저 기본 아이콘 위치 변경 불가) */
         .date-group {
             display: flex;
             gap: 10px;
@@ -44,7 +57,7 @@
 
         <div id="section1" class="section-visible">
             <div class="form-group">
-                <label for="employee-id">1. 사번을 입력해주세요. (mk~ 형식)</label>
+                <label for="employee-id">1. 사번을 입력해주세요.</label>
                 <input type="text" id="employee-id" name="employee-id" placeholder="mk0000" required>
             </div>
             <div class="form-group">
@@ -99,10 +112,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="name">6. 이름을 입력해주세요.</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
                 <label>7. 배송 주소 (홀 이름까지 최대한 상세히 기재)</label>
                 <div style="display: flex; gap: 5px;">
                     <input type="text" id="postcode" placeholder="우편번호" readonly required>
@@ -112,8 +121,8 @@
                 <input type="text" id="detailAddress" placeholder="상세주소 입력" required>
             </div>
             <div class="form-group">
-                <label for="phone">8. 연락처를 입력해주세요. (010-0000-0000)</label>
-                <input type="text" id="phone" name="phone" required>
+                <label for="phone">8. 연락처를 입력해주세요.</label>
+                <input type="text" id="phone" name="phone" placeholder="010-0000-0000" required>
             </div>
             <div class="form-group">
                 <label for="notes">9. 기타 요청사항</label>
@@ -165,7 +174,7 @@
             </div>
             <div class="form-group">
                 <label for="deceased-name">4. 고인 성함</label>
-                <input type="text" id="deceased-name" name="deceased-name" required>
+                <input type="text" id="deceased-name" name="deceased-name" placeholder="홍 길 동" required>
             </div>
             <div class="form-group">
                 <label>5. 공지 여부</label>
@@ -214,7 +223,7 @@
             </div>
             <div class="form-group">
                 <label for="phone-josa">10. 연락처를 입력해주세요. (010-0000-0000)</label>
-                <input type="text" id="phone-josa" name="phone" required>
+                <input type="text" id="phone-josa" name="phone" placeholder="010-0000-0000" required>
             </div>
             <div class="form-group">
                 <label for="notes-josa">11. 기타 요청사항</label>
