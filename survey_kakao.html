@@ -1,352 +1,379 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>(역삼) 경조사 지원 신청</title>
-    <style>
-        body { 
-            font-family: Noto Sans KR, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            background-color: #875EB3;
-        }
+    <meta charset="utf-8">
+    <title>(역삼) 경조사 지원 신청</title>
+    <style>
+        body {
+            font-family: Noto Sans KR, sans-serif;
+            background-color: #875EB3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
 
-        /* 전체 컨테이너 스타일 */
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background-color: white;
-            padding: 25px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin: 25px 0;
-        }
-        
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 10px; }
-        input[type="text"], input[type="date"], input[type="time"], textarea, select { width: 100%; padding: 8px; box-sizing: border-box; }
-        
-        /* '다음' 버튼 그룹 아래 여백 추가 */
-        .button-group { 
-            display: flex; 
-            gap: 10px; 
-            margin-top: 20px; 
-            margin-bottom: 30px;
-        }
+        /* 전체 컨테이너 스타일 */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            padding: 25px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 25px 0;
+        }
 
-        button {
-            padding: 8px 10px; cursor: pointer; font-weight: bold;
-            line-height: 1.2; text-align: center; min-width: 80px;
-        }
-        #postcode, #address { margin-bottom: 5px; }
-        
-        /* 라디오 버튼 그룹 정렬을 위한 스타일 */
-        .radio-group-container {
-            display: flex;
-            align-items: center; /* 수직 중앙 정렬 */
-            gap: 20px; /* 라디오 버튼 사이 간격 */
-        }
-        
-        /* 'O', 'X' 등 라디오 버튼 텍스트 스타일 */
-        .radio-group-label {
-            font-weight: normal; /* 글자체 일반으로 변경 */
-            margin-bottom: 0 !important; /* 위쪽 label 스타일 오버라이드 */
-            padding-right: 10px; /* 라디오 버튼 사이 간격 추가 */
-        }
-        
-        .section { display: none; }
-        .section-visible { display: block; }
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* 인풋 필드 기본 스타일 */
+        input[type="text"], input[type="date"], input[type="time"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* 라디오/체크박스 그룹 정렬 */
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .radio-group label {
+            font-weight: normal; /* 라디오 버튼 라벨 볼드체 해제 */
+            margin-bottom: 0;
+        }
+
+        /* 버튼 그룹 */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 8px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            line-height: 1.2;
+            text-align: center;
+            min-width: 80px;
+            border: 1px solid #000;
+            border-radius: 4px;
+        }
+
+        /* 섹션별 스타일 */
+        .section {
+            display: none;
+        }
+
+        .section-visible {
+            display: block;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>[역삼] 경조사 지원 신청</h1>
-        <p>안녕하세요. 총무팀입니다.<br>빠른 경조사 지원을 위하여 아래 내용 응답 부탁드립니다.</p>
+    <div class="container">
+        <h1>[역삼] 경조사 지원 신청</h1>
+        <p>안녕하세요. 총무팀입니다.<br>빠른 경조사 지원을 위하여 아래 내용 응답 부탁드립니다.</p>
 
-        <div id="section1" class="section-visible">
-            <div class="form-group">
-                <label for="employee-id">1. 사번을 입력해주세요. (mk~ 형식)</label>
-                <input type="text" id="employee-id" name="employee-id" placeholder="mk0000" required>
-            </div>
-            <div class="form-group">
-                <label>2. 구분</label>
-                <div>
-                    <input type="radio" id="kyungsa" name="division" value="경사" required>
-                    <label for="kyungsa">경사</label>
-                    <input type="radio" id="josa" name="division" value="조사" required>
-                    <label for="josa">조사</label>
-                </div>
-            </div>
-            <div class="button-group">
-                <button onclick="goToNextSection()">다음</button>
-            </div>
-        </div>
+        <div id="section1" class="section-visible">
+            <div class="form-group">
+                <label for="employee-id">1. 사번을 입력해주세요. (mk~ 형식)</label>
+                <input type="text" id="employee-id" name="employee-id" placeholder="mk0000" required>
+            </div>
+            <div class="form-group">
+                <label>2. 구분</label>
+                <div class="radio-group">
+                    <input type="radio" id="kyungsa" name="division" value="경사" required>
+                    <label for="kyungsa">경사</label>
+                    <input type="radio" id="josa" name="division" value="조사" required>
+                    <label for="josa">조사</label>
+                </div>
+            </div>
+            <div class="button-group">
+                <button onclick="goToNextSection()">다음</button>
+            </div>
+        </div>
 
-        <div id="section2" class="section">
-            <div class="form-group">
-                <label for="kyungsa-type">1. 경사 종류를 선택해주세요.</label>
-                <select id="kyungsa-type" name="kyungsa-type" required>
-                    <option value="">--선택--</option>
-                    <option value="본인 결혼">본인 결혼</option>
-                    <option value="자녀 결혼">자녀 결혼</option>
-                    <option value="본인 출산">본인 출산</option>
-                    <option value="배우자 출산">배우자 출산</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="event-date">2. 발생일</label>
-                <input type="date" id="event-date" name="event-date" required>
-            </div>
-            <div class="form-group">
-                <label for="event-time">3. 발생 시간</label>
-                <input type="time" id="event-time" name="event-time" required>
-            </div>
-            <div class="form-group">
-                <label>4. 공지 여부</label>
-                <p>2일 전, 예식 시간에 공지됩니다. 특이사항 있으실 경우 따로 담당자에게 연락 부탁드립니다.</p>
-                <div class="radio-group-container">
-                    <input type="radio" id="announce_yes" name="announce" value="O" required>
-                    <label for="announce_yes" class="radio-group-label">O</label>
-                    <input type="radio" id="announce_no" name="announce" value="X" required>
-                    <label for="announce_no" class="radio-group-label">X</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>5. 화환 배송 여부 (출산 시 해당 없음)</label>
-                <div class="radio-group-container">
-                    <input type="radio" id="wreath_yes" name="wreath" value="O" required>
-                    <label for="wreath_yes" class="radio-group-label">O</label>
-                    <input type="radio" id="wreath_no" name="wreath" value="X" required>
-                    <label for="wreath_no" class="radio-group-label">X</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="name">6. 이름을 입력해주세요.</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label>7. 배송 주소 (홀 이름까지 최대한 상세히 기재)</label>
-                <div style="display: flex; gap: 5px;">
-                    <input type="text" id="postcode" placeholder="우편번호" readonly required>
-                    <button onclick="execDaumPostcodeKyungsa()">우편번호<br>찾기</button>
-                </div>
-                <input type="text" id="address" placeholder="주소" readonly required>
-                <input type="text" id="detailAddress" placeholder="상세주소 입력" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">8. 연락처를 입력해주세요. (010-0000-0000)</label>
-                <input type="text" id="phone" name="phone" placeholder="010-0000-0000" required>
-            </div>
-            <div class="form-group">
-                <label for="notes">9. 기타 요청사항</label>
-                <textarea id="notes" name="notes" rows="4"></textarea>
-            </div>
-            <div class="button-group">
-                <button onclick="goToPreviousSection()">뒤로</button>
-                <button onclick="submitForm()">제출</button>
-            </div>
-        </div>
-        
-        <div id="section3" class="section">
-            <div class="form-group">
-                <label for="josa-type">1. 조사를 선택해주세요.</label>
-                <select id="josa-type" name="josa-type" required>
-                    <option value="">--선택--</option>
-                    <option value="외조부상">외조부상</option>
-                    <option value="외조모상">외조모상</option>
-                    <option value="조부상">조부상</option>
-                    <option value="조모상">조모상</option>
-                    <option value="부친상">부친상</option>
-                    <option value="모친상">모친상</option>
-                    <option value="빙외조부상">빙외조부상</option>
-                    <option value="빙외조모상">빙외조모상</option>
-                    <option value="빙조부상">빙조부상</option>
-                    <option value="빙조모상">빙조모상</option>
-                    <option value="빙부상">빙부상</option>
-                    <option value="빙모상">빙모상</option>
-                    <option value="시외조부상">시외조부상</option>
-                    <option value="시외조모상">시외조모상</option>
-                    <option value="시조부상">시조부상</option>
-                    <option value="시조모상">시조모상</option>
-                    <option value="시부상">시부상</option>
-                    <option value="시모상">시모상</option>
-                    <option value="형제자매상">형제자매상</option>
-                    <option value="배우자의 형제자매상">배우자의 형제자매상</option>
-                    <option value="본인상">본인상</option>
-                    <option value="자녀상">자녀상</option>
-                    <option value="배우자상">배우자상</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="event-date-josa">2. 발생일</label>
-                <input type="date" id="event-date-josa" name="event-date" required>
-            </div>
-            <div class="form-group">
-                <label for="funeral-date-josa">3. 발인일</label>
-                <input type="date" id="funeral-date-josa" name="funeral-date" required>
-            </div>
-            <div class="form-group">
-                <label for="deceased-name">4. 고인 성함</label>
-                <input type="text" id="deceased-name" name="deceased-name" placeholder="홍 길 동" required>
-            </div>
-            <div class="form-group">
-                <label>5. 공지 여부</label>
-                <div class="radio-group-container">
-                    <input type="radio" id="announce-josa-yes" name="announce-josa" value="O" required>
-                    <label for="announce-josa-yes" class="radio-group-label">O</label>
-                    <input type="radio" id="announce-josa-no" name="announce-josa" value="X" required>
-                    <label for="announce-josa-no" class="radio-group-label">X</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>6. 화환 배송 여부</label>
-                <div class="radio-group-container">
-                    <input type="radio" id="wreath-josa-yes" name="wreath-josa" value="O" required>
-                    <label for="wreath-josa-yes" class="radio-group-label">O</label>
-                    <input type="radio" id="wreath-josa-no" name="wreath-josa" value="X" required>
-                    <label for="wreath-josa-no" class="radio-group-label">X</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>7. 상조용품 배송 여부</label>
-                <div class="radio-group-container">
-                    <input type="radio" id="supplies-josa-yes" name="supplies-josa" value="O" required>
-                    <label for="supplies-josa-yes" class="radio-group-label">O</label>
-                    <input type="radio" id="supplies-josa-no" name="supplies-josa" value="X" required>
-                    <label for="supplies-josa-no" class="radio-group-label">X</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>8. 근조기 배송 여부</label>
-                <div class="radio-group-container">
-                    <input type="radio" id="flag-josa-yes" name="flag-josa" value="O" required>
-                    <label for="flag-josa-yes" class="radio-group-label">O</label>
-                    <input type="radio" id="flag-josa-no" name="flag-josa" value="X" required>
-                    <label for="flag-josa-no" class="radio-group-label">X</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>9. 배송 주소</label>
-                <div style="display: flex; gap: 5px;">
-                    <input type="text" id="postcode-josa" placeholder="우편번호" readonly required>
-                    <button onclick="execDaumPostcodeJosa()">우편번호<br>찾기</button>
-                </div>
-                <input type="text" id="address-josa" placeholder="주소" readonly required>
-                <input type="text" id="detailAddress-josa" placeholder="상세주소 입력" required>
-            </div>
-            <div class="form-group">
-                <label for="phone-josa">10. 연락처를 입력해주세요. (010-0000-0000)</label>
-                <input type="text" id="phone-josa" name="phone" placeholder="010-0000-0000" required>
-            </div>
-            <div class="form-group">
-                <label for="notes-josa">11. 기타 요청사항</label>
-                <textarea id="notes-josa" name="notes-josa" rows="4"></textarea>
-            </div>
-            <div class="button-group">
-                <button onclick="goToPreviousSection()">뒤로</button>
-                <button onclick="submitForm()">제출</button>
-            </div>
-        </div>
-    </div>
+        <div id="section2" class="section">
+            <div class="form-group">
+                <label for="kyungsa-type">1. 경사 종류를 선택해주세요.</label>
+                <select id="kyungsa-type" name="kyungsa-type" required>
+                    <option value="">--선택--</option>
+                    <option value="본인 결혼">본인 결혼</option>
+                    <option value="자녀 결혼">자녀 결혼</option>
+                    <option value="본인 출산">본인 출산</option>
+                    <option value="배우자 출산">배우자 출산</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="event-date">2. 발생일</label>
+                <input type="date" id="event-date" name="event-date" required>
+            </div>
+            <div class="form-group">
+                <label for="event-time">3. 발생 시간</label>
+                <input type="time" id="event-time" name="event-time" required>
+            </div>
+            <div class="form-group">
+                <label>4. 공지 여부</label>
+                <p style="margin: 5px 0 10px;">2일 전, 예식 시간에 공지됩니다. 특이사항 있으실 경우 따로 담당자에게 연락 부탁드립니다.</p>
+                <div class="radio-group">
+                    <input type="radio" id="announce_yes" name="announce" value="O" required>
+                    <label for="announce_yes">O</label>
+                    <input type="radio" id="announce_no" name="announce" value="X" required>
+                    <label for="announce_no">X</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>5. 화환 배송 여부 (출산 시 해당 없음)</label>
+                <div class="radio-group">
+                    <input type="radio" id="wreath_yes" name="wreath" value="O" required>
+                    <label for="wreath_yes">O</label>
+                    <input type="radio" id="wreath_no" name="wreath" value="X" required>
+                    <label for="wreath_no">X</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">6. 이름을 입력해주세요.</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>7. 배송 주소 (홀 이름까지 최대한 상세히 기재)</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" id="postcode" placeholder="우편번호" readonly required>
+                    <button onclick="execDaumPostcodeKyungsa()">우편번호<br>찾기</button>
+                </div>
+                <input type="text" id="address" placeholder="주소" readonly required>
+                <input type="text" id="detailAddress" placeholder="상세주소 입력" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">8. 연락처를 입력해주세요. (010-0000-0000)</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">9. 기타 요청사항</label>
+                <textarea id="notes" name="notes" rows="4"></textarea>
+            </div>
+            <div class="button-group">
+                <button onclick="goToPreviousSection()">뒤로</button>
+                <button onclick="submitForm()">제출</button>
+            </div>
+        </div>
 
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
-        function goToNextSection() {
-            const employeeId = document.getElementById('employee-id').value;
-            const division = document.querySelector('input[name="division"]:checked');
-            if (!employeeId || !division) {
-                alert('사번과 구분을 입력해 주세요.');
-                return;
-            }
+        <div id="section3" class="section">
+            <div class="form-group">
+                <label for="josa-type">1. 조사를 선택해주세요.</label>
+                <select id="josa-type" name="josa-type" required>
+                    <option value="">--선택--</option>
+                    <option value="외조부상">외조부상</option>
+                    <option value="외조모상">외조모상</option>
+                    <option value="조부상">조부상</option>
+                    <option value="조모상">조모상</option>
+                    <option value="부친상">부친상</option>
+                    <option value="모친상">모친상</option>
+                    <option value="빙외조부상">빙외조부상</option>
+                    <option value="빙외조모상">빙외조모상</option>
+                    <option value="빙조부상">빙조부상</option>
+                    <option value="빙조모상">빙조모상</option>
+                    <option value="빙부상">빙부상</option>
+                    <option value="빙모상">빙모상</option>
+                    <option value="시외조부상">시외조부상</option>
+                    <option value="시외조모상">시외조모상</option>
+                    <option value="시조부상">시조부상</option>
+                    <option value="시조모상">시조모상</option>
+                    <option value="시부상">시부상</option>
+                    <option value="시모상">시모상</option>
+                    <option value="형제자매상">형제자매상</option>
+                    <option value="배우자의 형제자매상">배우자의 형제자매상</option>
+                    <option value="본인상">본인상</option>
+                    <option value="자녀상">자녀상</option>
+                    <option value="배우자상">배우자상</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="event-date-josa">2. 발생일</label>
+                <input type="date" id="event-date-josa" name="event-date" required>
+            </div>
+            <div class="form-group">
+                <label for="funeral-date-josa">3. 발인일</label>
+                <input type="date" id="funeral-date-josa" name="funeral-date" required>
+            </div>
+            <div class="form-group">
+                <label for="deceased-name">4. 고인 성함</label>
+                <input type="text" id="deceased-name" name="deceased-name" placeholder="홍 길 동" required>
+            </div>
+            <div class="form-group">
+                <label>5. 공지 여부</label>
+                <div class="radio-group">
+                    <input type="radio" id="announce-josa-yes" name="announce-josa" value="O" required>
+                    <label for="announce-josa-yes">O</label>
+                    <input type="radio" id="announce-josa-no" name="announce-josa" value="X" required>
+                    <label for="announce-josa-no">X</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>6. 화환 배송 여부</label>
+                <div class="radio-group">
+                    <input type="radio" id="wreath-josa-yes" name="wreath-josa" value="O" required>
+                    <label for="wreath-josa-yes">O</label>
+                    <input type="radio" id="wreath-josa-no" name="wreath-josa" value="X" required>
+                    <label for="wreath-josa-no">X</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>7. 상조용품 배송 여부</label>
+                <div class="radio-group">
+                    <input type="radio" id="supplies-josa-yes" name="supplies-josa" value="O" required>
+                    <label for="supplies-josa-yes">O</label>
+                    <input type="radio" id="supplies-josa-no" name="supplies-josa" value="X" required>
+                    <label for="supplies-josa-no">X</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>8. 근조기 배송 여부</label>
+                <div class="radio-group">
+                    <input type="radio" id="flag-josa-yes" name="flag-josa" value="O" required>
+                    <label for="flag-josa-yes">O</label>
+                    <input type="radio" id="flag-josa-no" name="flag-josa" value="X" required>
+                    <label for="flag-josa-no">X</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>9. 배송 주소</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" id="postcode-josa" placeholder="우편번호" readonly required>
+                    <button onclick="execDaumPostcodeJosa()">우편번호<br>찾기</button>
+                </div>
+                <input type="text" id="address-josa" placeholder="주소" readonly required>
+                <input type="text" id="detailAddress-josa" placeholder="상세주소 입력" required>
+            </div>
+            <div class="form-group">
+                <label for="phone-josa">10. 연락처를 입력해주세요. (010-0000-0000)</label>
+                <input type="text" id="phone-josa" name="phone" placeholder="010-0000-0000" required>
+            </div>
+            <div class="form-group">
+                <label for="notes-josa">11. 기타 요청사항</label>
+                <textarea id="notes-josa" name="notes-josa" rows="4"></textarea>
+            </div>
+            <div class="button-group">
+                <button onclick="goToPreviousSection()">뒤로</button>
+                <button onclick="submitForm()">제출</button>
+            </div>
+        </div>
+    </div>
 
-            document.getElementById('section1').classList.remove('section-visible');
-            document.getElementById('section2').classList.remove('section-visible');
-            document.getElementById('section3').classList.remove('section-visible');
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function goToNextSection() {
+            const employeeId = document.getElementById('employee-id').value;
+            const division = document.querySelector('input[name="division"]:checked');
+            if (!employeeId || !division) {
+                alert('사번과 구분을 입력해 주세요.');
+                return;
+            }
 
-            if (division.value === '경사') {
-                document.getElementById('section2').classList.add('section-visible');
-            } else if (division.value === '조사') {
-                document.getElementById('section3').classList.add('section-visible');
-            }
-        }
-        
-        function goToPreviousSection() {
-            document.getElementById('section1').classList.add('section-visible');
-            document.getElementById('section2').classList.remove('section-visible');
-            document.getElementById('section3').classList.remove('section-visible');
-        }
+            document.getElementById('section1').classList.remove('section-visible');
+            document.getElementById('section2').classList.remove('section-visible');
+            document.getElementById('section3').classList.remove('section-visible');
 
-        function execDaumPostcodeKyungsa() {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    var addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
-                    document.getElementById('postcode').value = data.zonecode;
-                    document.getElementById("address").value = addr;
-                    document.getElementById("detailAddress").focus();
-                }
-            }).open();
-        }
+            if (division.value === '경사') {
+                document.getElementById('section2').classList.add('section-visible');
+            } else if (division.value === '조사') {
+                document.getElementById('section3').classList.add('section-visible');
+            }
+        }
+        
+        function goToPreviousSection() {
+            document.getElementById('section1').classList.add('section-visible');
+            document.getElementById('section2').classList.remove('section-visible');
+            document.getElementById('section3').classList.remove('section-visible');
+        }
 
-        function execDaumPostcodeJosa() {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    var addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
-                    document.getElementById('postcode-josa').value = data.zonecode;
-                    document.getElementById("address-josa").value = addr;
-                    document.getElementById("detailAddress-josa").focus();
-                }
-            }).open();
-        }
+        function execDaumPostcodeKyungsa() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    var addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
+                    document.getElementById('postcode').value = data.zonecode;
+                    document.getElementById("address").value = addr;
+                    document.getElementById("detailAddress").focus();
+                }
+            }).open();
+        }
 
-        function submitForm() {
-            const division = document.querySelector('input[name="division"]:checked').value;
-            let data = {
-                employeeId: document.getElementById('employee-id').value,
-                division: division
-            };
+        function execDaumPostcodeJosa() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    var addr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress;
+                    document.getElementById('postcode-josa').value = data.zonecode;
+                    document.getElementById("address-josa").value = addr;
+                    document.getElementById("detailAddress-josa").focus();
+                }
+            }).open();
+        }
 
-            if (division === '경사') {
-                data.kyungsaType = document.getElementById('kyungsa-type').value;
-                data.eventDate = document.getElementById('event-date').value;
-                data.eventTime = document.getElementById('event-time').value;
-                data.announce = document.querySelector('input[name="announce"]:checked').value;
-                data.wreath = document.querySelector('input[name="wreath"]:checked').value;
-                data.name = document.getElementById('name').value;
-                data.postcode = document.getElementById('postcode').value;
-                data.address = document.getElementById('address').value;
-                data.detailAddress = document.getElementById('detailAddress').value;
-                data.phone = document.getElementById('phone').value;
-                data.notes = document.getElementById('notes').value;
-            } else if (division === '조사') {
-                data.josaType = document.getElementById('josa-type').value;
-                data.eventDate = document.getElementById('event-date-josa').value;
-                data.funeralDate = document.getElementById('funeral-date-josa').value;
-                data.deceasedName = document.getElementById('deceased-name').value;
-                data.announce = document.querySelector('input[name="announce-josa"]:checked').value;
-                data.wreath = document.querySelector('input[name="wreath-josa"]:checked').value;
-                data.supplies = document.querySelector('input[name="supplies-josa"]:checked').value;
-                data.flag = document.querySelector('input[name="flag-josa"]:checked').value;
-                data.postcode = document.getElementById('postcode-josa').value;
-                data.address = document.getElementById('address-josa').value;
-                data.detailAddress = document.getElementById('detailAddress-josa').value;
-                data.phone = document.getElementById('phone-josa').value;
-                data.notes = document.getElementById('notes-josa').value;
-            }
-            
-            const requiredFields = (division === '경사')
-                ? [data.kyungsaType, data.eventDate, data.eventTime, data.announce, data.wreath, data.name, data.postcode, data.address, data.detailAddress, data.phone]
-                : [data.josaType, data.eventDate, data.funeralDate, data.deceasedName, data.announce, data.wreath, data.supplies, data.flag, data.postcode, data.address, data.detailAddress, data.phone];
-            
-            for (const field of requiredFields) {
-                if (field === '' || field === null || typeof field === 'undefined') {
-                    alert('모든 필수 정보를 입력해 주세요.');
-                    return;
-                }
-            }
+        function submitForm() {
+            const division = document.querySelector('input[name="division"]:checked').value;
+            let data = {
+                employeeId: document.getElementById('employee-id').value,
+                division: division
+            };
 
-            console.log(data);
-            alert('데이터가 성공적으로 수집되었습니다. 콘솔을 확인해 주세요.');
-            // window.location.reload();
-        }
-    </script>
+            if (division === '경사') {
+                data.kyungsaType = document.getElementById('kyungsa-type').value;
+                data.eventDate = document.getElementById('event-date').value;
+                data.eventTime = document.getElementById('event-time').value;
+                data.announce = document.querySelector('input[name="announce"]:checked').value;
+                data.wreath = document.querySelector('input[name="wreath"]:checked').value;
+                data.name = document.getElementById('name').value;
+                data.postcode = document.getElementById('postcode').value;
+                data.address = document.getElementById('address').value;
+                data.detailAddress = document.getElementById('detailAddress').value;
+                data.phone = document.getElementById('phone').value;
+                data.notes = document.getElementById('notes').value;
+            } else if (division === '조사') {
+                data.josaType = document.getElementById('josa-type').value;
+                data.eventDate = document.getElementById('event-date-josa').value;
+                data.funeralDate = document.getElementById('funeral-date-josa').value;
+                data.deceasedName = document.getElementById('deceased-name').value;
+                data.announce = document.querySelector('input[name="announce-josa"]:checked').value;
+                data.wreath = document.querySelector('input[name="wreath-josa"]:checked').value;
+                data.supplies = document.querySelector('input[name="supplies-josa"]:checked').value;
+                data.flag = document.querySelector('input[name="flag-josa"]:checked').value;
+                data.postcode = document.getElementById('postcode-josa').value;
+                data.address = document.getElementById('address-josa').value;
+                data.detailAddress = document.getElementById('detailAddress-josa').value;
+                data.phone = document.getElementById('phone-josa').value;
+                data.notes = document.getElementById('notes-josa').value;
+            }
+            
+            const requiredFields = (division === '경사')
+                ? [data.kyungsaType, data.eventDate, data.eventTime, data.announce, data.wreath, data.name, data.postcode, data.address, data.detailAddress, data.phone]
+                : [data.josaType, data.eventDate, data.funeralDate, data.deceasedName, data.announce, data.wreath, data.supplies, data.flag, data.postcode, data.address, data.detailAddress, data.phone];
+            
+            for (const field of requiredFields) {
+                if (field === '' || field === null || typeof field === 'undefined') {
+                    alert('모든 필수 정보를 입력해 주세요.');
+                    return;
+                }
+            }
+
+            console.log(data);
+            alert('데이터가 성공적으로 수집되었습니다. 콘솔을 확인해 주세요.');
+            // window.location.reload();
+        }
+    </script>
 </body>
 </html>
